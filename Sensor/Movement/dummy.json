@@ -1,0 +1,45 @@
+{
+  "name": "DummyDevice",
+  "description": "Just a test of DGW",
+  "meta": {"any":"key", "kind":"dummy"},
+  "ttl": 300,
+  "resources": [
+    {
+      "type": "Resource",
+      "name": "RandomStream",
+      "meta": {},
+      "agent": {
+        "type": "service",
+        "dir": null,
+        "exec": "python /usr/local/patchwork/scripts/movement.py"
+      },
+      "representation": {
+        "application/json": {
+          "type": "object"
+        }
+      },
+      "protocols": [
+        {
+          "type": "REST",
+          "methods": [
+            "GET"
+          ],
+          "content-types": [
+            "application/json"
+          ]
+        },
+        {
+          "type": "MQTT",
+          "endpoint": {
+            "url": "tcp://localhost:1883"
+          },
+          "methods": [
+            "PUB",
+            "SUB"
+          ],
+          "content-types": []
+        }
+      ]
+    }
+  ]
+}
